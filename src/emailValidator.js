@@ -1,5 +1,5 @@
 function hasNoSpaces(s) {
-  return !/\s/.test(s);   // retourne true si aucun espace
+  return !/\s/.test(s);   // true si aucun espace
 }
 
 function hasDomainDotNotLast(domain) {
@@ -16,13 +16,16 @@ function validateEmail(email) {
   // règle 2 : présence du @
   if (!email.includes('@')) return false;
 
-  // éviter plusieurs @
+  // split au niveau de @ et vérifier qu'il n'y en a qu'un
   const parts = email.split('@');
   if (parts.length !== 2) return false;
 
   const [local, domain] = parts;
 
-  // règle 3 : domaine doit contenir un '.' qui n’est pas le dernier caractère
+  // règle 3 : non vide avant et après @
+  if (!local || !domain) return false;
+
+  // règle 4 : domaine doit contenir un '.' qui n’est pas le dernier caractère
   if (!hasDomainDotNotLast(domain)) return false;
 
   return true;

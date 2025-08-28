@@ -5,11 +5,9 @@ describe('emailValidator - @ presence', () => {
     expect(validateEmail('john.doe.example.com')).toBe(false);
   });
   test('passes basic shape with one @ (temp relaxed)', () => {
-    // On validera mieux ensuite
     expect(typeof validateEmail('a@b')).toBe('boolean');
   });
 });
-
 
 describe('emailValidator - dot in domain (not last)', () => {
   test('fails if no dot in domain', () => {
@@ -27,5 +25,17 @@ describe('emailValidator - no spaces', () => {
   test('fails if email contains spaces', () => {
     expect(validateEmail('john doe@domain.com')).toBe(false);
     expect(validateEmail('john@domain .com')).toBe(false);
+  });
+});
+
+describe('emailValidator - text before and after @', () => {
+  test('fails if empty local part (before @)', () => {
+    expect(validateEmail('@domain.com')).toBe(false);
+  });
+  test('fails if empty domain part (after @)', () => {
+    expect(validateEmail('john@')).toBe(false);
+  });
+  test('passes with non-empty local and domain', () => {
+    expect(validateEmail('a@b.co')).toBe(true);
   });
 });
