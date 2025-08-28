@@ -2,6 +2,10 @@
   "name": "email-validator",
   "version": "1.0.0",
   "private": true,
-  "scripts": { "test": "jest --ci" },
-  "devDependencies": { "jest": "^29.7.0" }
+  "scripts": {
+    "test": "jest --ci"
+  },
+  "devDependencies": {
+    "jest": "^28.1.3"
+  }
 }
