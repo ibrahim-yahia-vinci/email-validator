@@ -22,3 +22,10 @@ describe('emailValidator - dot in domain (not last)', () => {
     expect(validateEmail('john@domain.com')).toBe(true);
   });
 });
+
+describe('emailValidator - no spaces', () => {
+  test('fails if email contains spaces', () => {
+    expect(validateEmail('john doe@domain.com')).toBe(false);
+    expect(validateEmail('john@domain .com')).toBe(false);
+  });
+});

@@ -13,4 +13,19 @@ function validateEmail(email) {
 
   return true;
 }
+function hasNoSpaces(s) { return !/\s/.test(s); }
+
+function validateEmail(email) {
+  if (typeof email !== 'string') return false;
+  if (!hasNoSpaces(email)) return false;
+  if (!email.includes('@')) return false;
+
+  const parts = email.split('@');
+  if (parts.length !== 2) return false; // éviter plusieurs @
+  const [local, domain] = parts;
+
+  if (!hasDomainDotNotLast(domain)) return false;
+
+  return true;
+}
 module.exports = validateEmail;
